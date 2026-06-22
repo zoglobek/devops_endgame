@@ -32,15 +32,6 @@ pipeline{
         }
         stage('validate files') {
             steps {
-                }
-            }
-        stage('pull git files for docker build'){
-            steps{
-                git url: "${params.GIT_REPO}", branch: "${params.BRANCH}", credentialsId: 'jengitkey'
-            }
-        }
-        stage('validate files') {
-            steps {
                 sh 'ls -la'
                 sh 'cat Dockerfile'
                 sh 'pwd'
@@ -65,5 +56,16 @@ pipeline{
                 """
             }
         }
+        stage('Docker Login') {
+            steps {
+                sh "echo $DOCKER_CREDS_PSW | docker login -u $DOCKER_CREDS_USR --password-stdin"
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                sh "docker push ${params.IMAGE_NAME}:${params.DOCKER_TAG}"
+            }
+        }
+    
     }
 }
