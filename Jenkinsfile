@@ -18,7 +18,6 @@ pipeline{
     }
     stages{
         stage('Workspace Cleanup') {
-            steps {
                 when {
                     expression { params.Cleanup == 'yes' }
                 }
@@ -26,7 +25,6 @@ pipeline{
                     cleanWs()
                 }
             }
-        }
         stage('pull git files for docker build'){
             steps{
                 git url: "${params.GIT_REPO}", branch: "${params.BRANCH}", credentialsId: 'jengitkey'
@@ -36,7 +34,6 @@ pipeline{
             steps {
                 }
             }
-        }
         stage('pull git files for docker build'){
             steps{
                 git url: "${params.GIT_REPO}", branch: "${params.BRANCH}", credentialsId: 'jengitkey'
