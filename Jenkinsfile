@@ -8,6 +8,7 @@ pipeline{
         string(name: 'IMAGE_NAME', defaultValue: 'galnewman/test', description: 'Docker image name')
         string(name: 'DOCKER_TAG' , defaultValue: 'latest', description: 'Docker tag')
         choice(name: 'ENVIRONMENT', choices: ['dev', 'staging', 'prod'], description: 'Environment Selection')
+        choice(name: 'Cleanup', choices: ['yes', 'no'], description: 'work space cleanup')
         
 
     }
@@ -16,6 +17,26 @@ pipeline{
         GIT_CREDS = credentials('jengitkey')
     }
     stages{
+        stage('Workspace Cleanup') {
+            steps {
+                when {
+                    expression { params.Cleanup == 'yes' }
+                }
+                steps {
+                    cleanWs()
+                }
+            }
+        }
+        stage('pull git files for docker build'){
+            steps{
+                git url: "${params.GIT_REPO}", branch: "${params.BRANCH}", credentialsId: 'jengitkey'
+            }
+        }
+        stage('validate files') {
+            steps {
+                }
+            }
+        }
         stage('pull git files for docker build'){
             steps{
                 git url: "${params.GIT_REPO}", branch: "${params.BRANCH}", credentialsId: 'jengitkey'
