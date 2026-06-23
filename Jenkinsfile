@@ -25,6 +25,16 @@ pipeline{
                     cleanWs()
                 }
             }
+        stage('show build parameters') {
+            steps {
+            echo "Webhook triggered build"
+            echo "Build triggered at: $(date)" 
+            echo "Branch is: $GIT_BRANCH"
+            echo "Commit is: $GIT_COMMIT"
+            }
+        }
+    
+    stages{
         stage('pull git files for docker build'){
             steps{
                 git url: "${params.GIT_REPO}", branch: "${params.BRANCH}", credentialsId: 'jengitkey'
