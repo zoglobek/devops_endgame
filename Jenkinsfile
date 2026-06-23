@@ -33,8 +33,6 @@ pipeline{
             echo "Commit is: $GIT_COMMIT"
             }
         }
-    
-    stages{
         stage('pull git files for docker build'){
             steps{
                 git url: "${params.GIT_REPO}", branch: "${params.BRANCH}", credentialsId: 'jengitkey'
