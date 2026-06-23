@@ -28,7 +28,7 @@ pipeline{
         stage('show build parameters') {
             steps {
             echo "Webhook triggered build"
-            echo "Build triggered at: $(date)" 
+            echo "Build triggered at: ${new Date()}" 
             echo "Branch is: $GIT_BRANCH"
             echo "Commit is: $GIT_COMMIT"
             }
