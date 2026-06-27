@@ -1,18 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: endgame argo deployment
+  name: endgame-argo-deployment
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'git@github.com:zoglobek/devops_endgame.git'
     targetRevision: HEAD
-    path: ./managment_chart
+    path: managment_chart
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
   syncPolicy:
     automated:
       selfHeal: true
-    
