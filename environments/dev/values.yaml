@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  tag: "dev:latest"
+  tag: "latest"
 resources:
   requests:
     cpu: "50m"

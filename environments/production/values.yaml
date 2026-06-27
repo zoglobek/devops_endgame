@@ -1,6 +1,6 @@
 replicaCount: 2
 image:
-  tag: "production:latest"
+  tag: "latest"
 resources:
   requests:
     cpu: "100m"
