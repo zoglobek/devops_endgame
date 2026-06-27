@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'git@github.com:zoglobek/devops_endgame.git'
+    repoURL: 'https://github.com/zoglobek/devops_endgame.git'
     targetRevision: HEAD
     path: managment_chart
   destination:
