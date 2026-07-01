@@ -1,5 +1,5 @@
 apiVersion: argoproj.io/v1alpha1
-kind: rollouts
+kind: Rollout
 metadata:
   name: {{ include "endgame.fullname" . }}
   labels:
